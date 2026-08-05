@@ -1,0 +1,30 @@
+<!--
+  Custom Wazuh Detection Rule — T1082 System Information Discovery
+  Author: Varshika Srivastava
+  Date: 2026-08-05
+  ATT&CK: T1082 | Tactic: Discovery (TA0007)
+  
+  Built-in rules 92032, 92052, 92002, 92910 already catch individual
+  commands. This rule catches the PATTERN of multiple discovery
+  commands in rapid succession — much lower false positive rate.
+-->
+
+<group name="local,sysmon,mitre_discovery,">
+
+  <rule id="100001" level="10" frequency="4" timeframe="30">
+    <if_matched_group>sysmon_event1</if_matched_group>
+    <field name="win.eventdata.image" type="pcre2">
+      (?i)\\(systeminfo|whoami|net|hostname|ipconfig|nltest|quser)\.exe
+    </field>
+    <description>
+      T1082 - System Information Discovery: Multiple enumeration
+      commands executed within 30 seconds - likely post-exploitation
+      reconnaissance activity
+    </description>
+    <mitre>
+      <id>T1082</id>
+    </mitre>
+    <group>mitre_ta0007,discovery,high_confidence</group>
+  </rule>
+
+</group>

@@ -1,0 +1,42 @@
+title: System Information Discovery - Rapid Enumeration Burst
+id: t1082-rapid-enum-001
+status: experimental
+description: >
+  Detects rapid execution of multiple Windows system enumeration
+  commands within a short timeframe, indicative of post-exploitation
+  reconnaissance mapped to MITRE ATT&CK T1082.
+author: Varshika Srivastava
+date: 2026-08-05
+references:
+  - https://attack.mitre.org/techniques/T1082/
+tags:
+  - attack.discovery
+  - attack.t1082
+logsource:
+  category: process_creation
+  product: windows
+detection:
+  selection:
+    Image|endswith:
+      - '\systeminfo.exe'
+      - '\whoami.exe'
+      - '\hostname.exe'
+      - '\ipconfig.exe'
+      - '\nltest.exe'
+      - '\quser.exe'
+    ParentImage|contains:
+      - '\cmd.exe'
+      - '\powershell.exe'
+  timeframe: 30s
+  condition: selection | count() > 3
+falsepositives:
+  - Legitimate administrator activity
+  - Remote monitoring and management tools
+  - Automated inventory scripts
+level: high
+fields:
+  - Image
+  - CommandLine
+  - ParentImage
+  - ParentCommandLine
+  - User
