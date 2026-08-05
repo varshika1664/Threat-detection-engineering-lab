@@ -51,3 +51,11 @@ mapping attack simulations to MITRE ATT&CK techniques and custom detection rules
 ## Author
 
 Varshika Srivastava — M.Sc. Cybersecurity, BBAU Lucknow
+
+## Lab Evidence
+
+### T1059.001 — PowerShell Execution alert in Wazuh
+![T1059.001 Alert](screenshots/T1059.001-wazuh-alert.png)
+
+## Status
+🔬 Active lab — detections being added as atomic tests complete
