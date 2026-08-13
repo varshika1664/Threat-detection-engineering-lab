@@ -18,7 +18,7 @@ mapping attack simulations to MITRE ATT&CK techniques and custom detection rules
 | ATT&CK ID | Technique | Wazuh Detected | Rule ID |
 |---|---|---|---|
 | T1059.001 | PowerShell Execution | ✅ Yes | 92004 |
-| T1082 | System Info Discovery | 🔄 Testing | - |
+| T1082 | System Info Discovery | ✅ Yes | 92002 |
 | T1547.001 | Registry Run Key Persistence | 🔄 Testing | - |
 | T1136.001 | Local Account Creation | 🔄 Testing | - |
 | T1070.004 | File Deletion | 🔄 Testing | - |
